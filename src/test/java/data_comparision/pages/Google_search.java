@@ -21,8 +21,7 @@ public class Google_search {
     private WebElement siteLink;
     @FindBy(xpath = "//button/div[contains(normalize-space(),'Accept')]")
     private WebElement acceptCookies;
-    public void OpenGoogleAndSearch(String seachTerm,String link){
-        //driver.get(link);
+    public void OpenGoogleAndSearch(String seachTerm){
         acceptCookies.click();
         searchBar.sendKeys(seachTerm);
     }

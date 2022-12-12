@@ -15,7 +15,7 @@ public class SearchStepDef {
        driver = BrowserFactory.getBrowser(BROWSER);
        Google_search googleSearch = new Google_search(driver);
        driver.get(link);
-       googleSearch.OpenGoogleAndSearch(searchTerm,link);
+       googleSearch.OpenGoogleAndSearch(searchTerm);
     }
     @And("click enter")
     public void click_enter() {
