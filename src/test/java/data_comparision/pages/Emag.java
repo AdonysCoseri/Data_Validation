@@ -2,10 +2,7 @@ package data_comparision.pages;
 
 
 import io.cucumber.java.sl.Ce;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -172,6 +169,9 @@ public class Emag {
         font.setBold(true);
         XSSFCellStyle style = workbook.createCellStyle();
         style.setFont(font);
+        XSSFCellStyle style2 = workbook.createCellStyle();
+        XSSFCellStyle style3 = workbook.createCellStyle();
+        XSSFCellStyle style4 = workbook.createCellStyle();
         int rowNumFound = 1;
         int CellFound = 0;
         int rowNumNotFound = 1;
@@ -212,6 +212,28 @@ public class Emag {
                 }
             else {
                 Cell cell = row.createCell(CellFound);
+                if(item.matches("-?\\d+(\\.\\d+)?")){
+                    double number = Double.parseDouble(item);
+                    if(number > 0) {
+                        style3.setFillBackgroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
+                        style3.setFillPattern(FillPatternType.DIAMONDS);
+                        cell.setCellStyle(style3);
+                        cell.setCellValue(number);
+                    }
+                    else if(number < 0){
+                        style4.setFillBackgroundColor(IndexedColors.RED.getIndex());
+                        style4.setFillPattern(FillPatternType.DIAMONDS);
+                        cell.setCellStyle(style4);
+                        cell.setCellValue(number);
+                    }
+                    else {
+                        style2.setFillBackgroundColor(IndexedColors.BLUE.getIndex());
+                        style2.setFillPattern(FillPatternType.DIAMONDS);
+                        cell.setCellStyle(style2);
+                        cell.setCellValue(number);
+                    }
+
+                }
                 cell.setCellValue(item);
                 CellFound++;
                 if (CellFound % 4 == 0) {
